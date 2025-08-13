@@ -1,3 +1,4 @@
+import 'package:cinebox/ui/core/themes/resource.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,7 +17,7 @@ class _State extends ConsumerState<SplashScreen> {
         title: const Text('Cinebox Splash Screen'),
       ),
       body: Center(
-        child: Text('Welcome to Cinebox!'),
+        child: Image.asset(R.ASSETS_IMAGES_BG_LOGIN_PNG),
       ),
     );
   }
