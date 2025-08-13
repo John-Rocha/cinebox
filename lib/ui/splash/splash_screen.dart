@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _State();
+}
+
+class _State extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Splash Screen'),
+        title: const Text('Cinebox Splash Screen'),
       ),
-      body: Container(),
+      body: Center(
+        child: Text('Welcome to Cinebox!'),
+      ),
     );
   }
 }
