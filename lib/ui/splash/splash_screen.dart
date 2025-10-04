@@ -13,11 +13,11 @@ class _State extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cinebox Splash Screen'),
-      ),
       body: Center(
-        child: Image.asset(R.ASSETS_IMAGES_BG_LOGIN_PNG),
+        child: Image.asset(
+          R.ASSETS_IMAGES_BG_LOGIN_PNG,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
