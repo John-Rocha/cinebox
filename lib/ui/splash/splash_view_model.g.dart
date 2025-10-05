@@ -49,4 +49,4 @@ final class SplashViewModelProvider
   }
 }
 
-String _$splashViewModelHash() => r'123fe104c64f8b9995a9169c18755e8e8035a9ee';
+String _$splashViewModelHash() => r'c5547aa3c21f89ae5ff3bf13e8f4cec5d7a8726c';
