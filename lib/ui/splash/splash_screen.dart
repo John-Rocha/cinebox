@@ -14,21 +14,24 @@ class _State extends ConsumerState<SplashScreen> with LoaderMessages {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Image.asset(
-          R.ASSETS_IMAGES_BG_LOGIN_PNG,
-          fit: BoxFit.fill,
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // showLoader();
-          // Future.delayed(const Duration(seconds: 3), () {
-          //   hideLoader();
-          //   showErrorSnackbar("An error occurred");
-          // });
-        },
-        child: const Icon(Icons.play_arrow),
+      body: Stack(
+        children: [
+          Image.asset(
+            R.ASSETS_IMAGES_BG_LOGIN_PNG,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Container(
+            color: Colors.black.withAlpha(170),
+            constraints: BoxConstraints.expand(),
+          ),
+          Center(
+            child: Image.asset(
+              R.ASSETS_IMAGES_LOGO_PNG,
+            ),
+          ),
+        ],
       ),
     );
   }
