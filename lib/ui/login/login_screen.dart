@@ -1,4 +1,5 @@
 import 'package:cinebox/ui/core/themes/resource.dart';
+import 'package:cinebox/ui/core/widgets/loader_messages.dart';
 import 'package:cinebox/ui/login/commands/login_with_google_command.dart';
 import 'package:cinebox/ui/login/login_view_model.dart';
 import 'package:cinebox/ui/login/widgets/sign_in_google_button.dart';
@@ -12,9 +13,24 @@ class LoginScreen extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> with LoaderMessages {
   @override
   Widget build(BuildContext context) {
+    ref.listen(
+      loginWithGoogleCommandProvider,
+      (_, state) {
+        state.whenOrNull(
+          loading: showLoader,
+          data: (_) {
+            Navigator.of(context).pushReplacementNamed('/home');
+          },
+          error: (error, stackTrace) {
+            hideLoader();
+            showErrorSnackbar(error.toString());
+          },
+        );
+      },
+    );
     return Scaffold(
       body: Stack(
         children: [
