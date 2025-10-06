@@ -3,7 +3,14 @@ import 'package:cinebox/ui/core/themes/resource.dart';
 import 'package:flutter/material.dart';
 
 class SignInGoogleButton extends StatelessWidget {
-  const SignInGoogleButton({super.key});
+  const SignInGoogleButton({
+    super.key,
+    required this.onPressed,
+    required this.isLoading,
+  });
+
+  final VoidCallback onPressed;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -13,18 +20,32 @@ class SignInGoogleButton extends StatelessWidget {
         padding: EdgeInsets.zero,
         minimumSize: const Size.fromHeight(48),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Stack(
         alignment: Alignment.center,
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: Image.asset(
-              R.ASSETS_IMAGES_GOOGLE_LOGO_PNG,
+            child: Visibility(
+              visible: !isLoading,
+              replacement: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 1,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              child: Image.asset(
+                R.ASSETS_IMAGES_GOOGLE_LOGO_PNG,
+              ),
             ),
           ),
-          const Text(
-            'Login com o Google',
+          Text(
+            !isLoading ? 'Entrar com o Google' : 'Realizando login...',
             style: TextStyle(fontSize: 14, color: AppColors.darkGrey),
           ),
         ],
