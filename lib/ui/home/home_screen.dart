@@ -1,3 +1,4 @@
+import 'package:cinebox/ui/home/widget/home_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,8 +12,24 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
+    return Scaffold(
+      extendBody: true,
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: (child, animation) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        child: Center(
+          child: Text(
+            'Home Screen',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+        ),
+      ),
+      bottomNavigationBar: HomeBottomNavBar(),
     );
   }
 }
