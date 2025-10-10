@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-mixin LoaderMessages<T extends ConsumerStatefulWidget> on ConsumerState<T> {
+mixin LoaderAndMessages<T extends ConsumerStatefulWidget> on ConsumerState<T> {
   var isOpen = false;
 
   void showLoader() {

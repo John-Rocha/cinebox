@@ -1,5 +1,5 @@
 import 'package:cinebox/ui/core/themes/resource.dart';
-import 'package:cinebox/ui/core/widgets/loader_messages.dart';
+import 'package:cinebox/ui/core/widgets/loader_and_messages.dart';
 import 'package:cinebox/ui/splash/commands/check_user_logged_command.dart';
 import 'package:cinebox/ui/splash/splash_view_model.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class SplashScreen extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _State();
 }
 
-class _State extends ConsumerState<SplashScreen> with LoaderMessages {
+class _State extends ConsumerState<SplashScreen> with LoaderAndMessages {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
