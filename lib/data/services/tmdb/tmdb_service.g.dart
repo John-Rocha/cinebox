@@ -18,7 +18,7 @@ class _TmdbService implements TmdbService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<GenreResponse> getMovieGenres({String language = 'pt-BR'}) async {
+  Future<GenreResponse> getMoviesGenres({String language = 'pt-BR'}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'language': language};
     final _headers = <String, dynamic>{};
@@ -111,7 +111,7 @@ class _TmdbService implements TmdbService {
   }
 
   @override
-  Future<MovieResponse> getNowPlayingMovies({
+  Future<MovieResponse> getNowPlaingMovies({
     String language = 'pt-BR',
     int page = 1,
   }) async {
@@ -144,7 +144,7 @@ class _TmdbService implements TmdbService {
   }
 
   @override
-  Future<MovieResponse> getUpcomingMovies({
+  Future<MovieResponse> getUpComingMovies({
     String language = 'pt-BR',
     int page = 1,
   }) async {
@@ -213,17 +213,17 @@ class _TmdbService implements TmdbService {
 
   @override
   Future<MovieResponse> discoverMovies({
-    String? withGenres,
     String language = 'pt-BR',
     int page = 1,
     String sortBy = 'popularity.desc',
+    String? withGenres,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'with_genres': withGenres,
       r'language': language,
       r'page': page,
       r'sort_by': sortBy,
+      r'with_genres': withGenres,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -250,8 +250,8 @@ class _TmdbService implements TmdbService {
   }
 
   @override
-  Future<MovieDetailsResponse> getMovieDetails({
-    required int movieId,
+  Future<MovieDetailsResponse> getMovieDetails(
+    int movieId, {
     String language = 'pt-BR',
     String appendToResponse = '',
   }) async {

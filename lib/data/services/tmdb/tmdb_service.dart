@@ -11,7 +11,7 @@ abstract class TmdbService {
   factory TmdbService(Dio dio, {String? baseUrl}) = _TmdbService;
 
   @GET('/genre/movie/list')
-  Future<GenreResponse> getMovieGenres({
+  Future<GenreResponse> getMoviesGenres({
     @Query('language') String language = 'pt-BR',
   });
 
@@ -28,13 +28,13 @@ abstract class TmdbService {
   });
 
   @GET('/movie/now_playing')
-  Future<MovieResponse> getNowPlayingMovies({
+  Future<MovieResponse> getNowPlaingMovies({
     @Query('language') String language = 'pt-BR',
     @Query('page') int page = 1,
   });
 
   @GET('/movie/upcoming')
-  Future<MovieResponse> getUpcomingMovies({
+  Future<MovieResponse> getUpComingMovies({
     @Query('language') String language = 'pt-BR',
     @Query('page') int page = 1,
   });
@@ -48,15 +48,15 @@ abstract class TmdbService {
 
   @GET('/discover/movie')
   Future<MovieResponse> discoverMovies({
-    @Query('with_genres') String? withGenres,
     @Query('language') String language = 'pt-BR',
     @Query('page') int page = 1,
     @Query('sort_by') String sortBy = 'popularity.desc',
+    @Query('with_genres') String? withGenres,
   });
 
   @GET('/movie/{movie_id}?include_image_language=pt,null')
-  Future<MovieDetailsResponse> getMovieDetails({
-    @Path('movie_id') required int movieId,
+  Future<MovieDetailsResponse> getMovieDetails(
+    @Path('movie_id') int movieId, {
     @Query('language') String language = 'pt-BR',
     @Query('append_to_response') String appendToResponse = '',
   });
