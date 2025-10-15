@@ -15,9 +15,9 @@ class Movie {
     required this.title,
     required this.overview,
     required this.genreIds,
+    required this.voteAverage,
     this.posterPath,
     this.backdropPath,
-    required this.voteAverage,
     this.releaseDate,
     this.isFavorite = false,
   });

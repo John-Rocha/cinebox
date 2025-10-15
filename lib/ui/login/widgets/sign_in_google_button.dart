@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class SignInGoogleButton extends StatelessWidget {
   const SignInGoogleButton({
-    super.key,
     required this.onPressed,
     required this.isLoading,
+    super.key,
   });
 
   final VoidCallback onPressed;

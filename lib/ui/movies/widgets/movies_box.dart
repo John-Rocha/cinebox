@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class MoviesBox extends StatelessWidget {
   const MoviesBox({
-    super.key,
     required this.title,
+    super.key,
     this.vertical = false,
   });
 
