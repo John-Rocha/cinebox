@@ -4,7 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MovieCard extends ConsumerStatefulWidget {
-  const MovieCard({super.key});
+  const MovieCard({
+    required this.id,
+    required this.title,
+    required this.year,
+    required this.imageUrl,
+    this.isFavorite = false,
+    this.onFavoriteTap,
+    super.key,
+  });
+
+  final int id;
+  final String title;
+  final int year;
+  final String imageUrl;
+  final bool isFavorite;
+  final VoidCallback? onFavoriteTap;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _MovieCardState();
@@ -22,8 +37,7 @@ class _MovieCardState extends ConsumerState<MovieCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CachedNetworkImage(
-                imageUrl:
-                    'https://image.tmdb.org/t/p/w500//8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
+                imageUrl: widget.imageUrl,
                 imageBuilder: (context, imageProvider) {
                   return Container(
                     width: 148,
@@ -59,7 +73,7 @@ class _MovieCardState extends ConsumerState<MovieCard> {
               ),
               SizedBox(height: 20),
               Text(
-                'Nome do Filme',
+                widget.title,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -69,7 +83,7 @@ class _MovieCardState extends ConsumerState<MovieCard> {
               ),
               SizedBox(height: 4),
               Text(
-                '2023',
+                '${widget.year}',
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w400,
@@ -97,7 +111,7 @@ class _MovieCardState extends ConsumerState<MovieCard> {
                   size: 16,
                 ),
 
-                onPressed: () {},
+                onPressed: widget.onFavoriteTap,
               ),
             ),
           ),

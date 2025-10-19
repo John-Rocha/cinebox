@@ -1,15 +1,18 @@
+import 'package:cinebox/domain/models/movie.dart';
 import 'package:cinebox/ui/core/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 
 class MoviesBox extends StatelessWidget {
   const MoviesBox({
     required this.title,
+    required this.movies,
     super.key,
     this.vertical = false,
   });
 
   final String title;
   final bool vertical;
+  final List<Movie> movies;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +40,21 @@ class MoviesBox extends StatelessWidget {
               spacing: 20,
               runSpacing: 20,
               runAlignment: WrapAlignment.center,
-              children: [
-                for (int i = 0; i < 10; i++) MovieCard(),
-              ],
+              children: movies
+                  .map(
+                    (movie) => MovieCard(
+                      id: movie.id,
+                      title: movie.title,
+                      year:
+                          movie.releaseDate != null &&
+                              movie.releaseDate!.isNotEmpty
+                          ? DateTime.parse(movie.releaseDate!).year
+                          : DateTime.now().year,
+                      imageUrl:
+                          'https://images.tmdb.org/t/p/w154${movie.posterPath}',
+                    ),
+                  )
+                  .toList(),
             ),
           ),
           child: SizedBox(
@@ -49,11 +64,23 @@ class MoviesBox extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               physics: BouncingScrollPhysics(),
               padding: EdgeInsets.only(left: 20),
-              itemCount: 10,
+              itemCount: movies.length,
               itemBuilder: (context, index) {
+                final movie = movies[index];
                 return Container(
                   margin: EdgeInsets.only(right: 16),
-                  child: MovieCard(),
+                  child: MovieCard(
+                    id: movie.id,
+                    title: movie.title,
+                    year:
+                        movie.releaseDate != null &&
+                            movie.releaseDate!.isNotEmpty
+                        ? DateTime.parse(movie.releaseDate!).year
+                        : DateTime.now().year,
+                    imageUrl:
+                        'https://images.tmdb.org/t/p/w154${movie.posterPath}',
+                    isFavorite: movie.isFavorite,
+                  ),
                 );
               },
             ),
