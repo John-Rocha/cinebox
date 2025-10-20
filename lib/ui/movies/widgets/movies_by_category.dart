@@ -1,4 +1,4 @@
-import 'package:cinebox/ui/movies/widgets/commands/get_movies_by_category_command.dart';
+import 'package:cinebox/ui/movies/commands/get_movies_by_category_command.dart';
 import 'package:cinebox/ui/movies/widgets/movies_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

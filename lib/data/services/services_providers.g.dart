@@ -186,3 +186,44 @@ final class TmdbServiceProvider
 }
 
 String _$tmdbServiceHash() => r'bdb5b1649b22bc1a8cec454bd99bd495675de368';
+
+@ProviderFor(moviesService)
+const moviesServiceProvider = MoviesServiceProvider._();
+
+final class MoviesServiceProvider
+    extends $FunctionalProvider<MoviesService, MoviesService, MoviesService>
+    with $Provider<MoviesService> {
+  const MoviesServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'moviesServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$moviesServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<MoviesService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  MoviesService create(Ref ref) {
+    return moviesService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(MoviesService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<MoviesService>(value),
+    );
+  }
+}
+
+String _$moviesServiceHash() => r'4c608350550028ce99569854f5c12e81e69f2f54';

@@ -107,10 +107,10 @@ class _MovieCardState extends ConsumerState<MovieCard> {
               backgroundColor: Colors.white,
               child: IconButton(
                 icon: Icon(
-                  Icons.favorite_border,
+                  widget.isFavorite ? Icons.favorite : Icons.favorite_border,
                   size: 16,
+                  color: widget.isFavorite ? Colors.red : Colors.grey,
                 ),
-
                 onPressed: widget.onFavoriteTap,
               ),
             ),
