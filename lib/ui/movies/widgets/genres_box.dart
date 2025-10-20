@@ -1,4 +1,5 @@
 import 'package:cinebox/ui/core/themes/colors.dart';
+import 'package:cinebox/ui/movies/movies_view_model.dart';
 import 'package:cinebox/ui/movies/widgets/commands/get_genres_command.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,6 +37,9 @@ class GenresBox extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {
                   selectedGenre.value = genre.id;
+                  ref
+                      .read(moviesViewModelProvider.notifier)
+                      .fetchMoviesByGenre(genreId: genre.id);
                 },
                 child: ValueListenableBuilder(
                   valueListenable: selectedGenre,
