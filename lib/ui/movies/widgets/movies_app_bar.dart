@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cinebox/ui/core/themes/colors.dart';
 import 'package:cinebox/ui/core/themes/resource.dart';
 import 'package:cinebox/ui/movies/movies_view_model.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,15 @@ class _MoviesAppBarState extends ConsumerState<MoviesAppBar> {
   final _searchController = TextEditingController();
 
   void onSearchChanged(String query) {
+    if (query.isEmpty) {
+      _debounce?.cancel();
+      ref.read(moviesViewModelProvider.notifier).fetchMoviesByCategory();
+      return;
+    }
+
     if (_debounce?.isActive ?? false) _debounce!.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () {
+      FocusScope.of(context).unfocus();
       ref
           .read(moviesViewModelProvider.notifier)
           .fetchMoviesBySearch(query: query);
@@ -27,7 +35,6 @@ class _MoviesAppBarState extends ConsumerState<MoviesAppBar> {
 
   @override
   void initState() {
-    _searchController.addListener(() {});
     super.initState();
   }
 
@@ -93,6 +100,23 @@ class _MoviesAppBarState extends ConsumerState<MoviesAppBar> {
                   Icons.search,
                   color: Colors.grey[600],
                   size: 16,
+                ),
+              ),
+              suffixIcon: Visibility(
+                visible: _searchController.text.isNotEmpty,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.clear,
+                    color: AppColors.lightGrey,
+                    size: 16,
+                  ),
+                  onPressed: () {
+                    _searchController.clear();
+                    FocusScope.of(context).unfocus();
+                    ref
+                        .read(moviesViewModelProvider.notifier)
+                        .fetchMoviesByCategory();
+                  },
                 ),
               ),
             ),
