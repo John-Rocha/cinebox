@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cinebox/ui/core/commands/favorite_movie_command.dart';
 import 'package:cinebox/ui/core/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,7 +28,19 @@ class MovieCard extends ConsumerStatefulWidget {
 
 class _MovieCardState extends ConsumerState<MovieCard> {
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref
+          .read(favoriteMovieCommandProvider(id: widget.id).notifier)
+          .setFavorite(widget.isFavorite);
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final isFavorite = ref.watch(favoriteMovieCommandProvider(id: widget.id));
+
     return Stack(
       children: [
         SizedBox(
@@ -107,9 +120,9 @@ class _MovieCardState extends ConsumerState<MovieCard> {
               backgroundColor: Colors.white,
               child: IconButton(
                 icon: Icon(
-                  widget.isFavorite ? Icons.favorite : Icons.favorite_border,
+                  isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: isFavorite ? AppColors.redColor : AppColors.lightGrey,
                   size: 16,
-                  color: widget.isFavorite ? Colors.red : Colors.grey,
                 ),
                 onPressed: widget.onFavoriteTap,
               ),
