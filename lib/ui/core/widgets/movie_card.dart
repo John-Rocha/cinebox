@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cinebox/ui/core/commands/favorite_movie_command.dart';
+import 'package:cinebox/ui/core/commands/save_favorite_movie_command.dart';
 import 'package:cinebox/ui/core/themes/colors.dart';
+import 'package:cinebox/ui/core/widgets/loader_and_messages.dart';
+import 'package:cinebox/ui/core/widgets/movie_card_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -26,7 +29,7 @@ class MovieCard extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _MovieCardState();
 }
 
-class _MovieCardState extends ConsumerState<MovieCard> {
+class _MovieCardState extends ConsumerState<MovieCard> with LoaderAndMessages {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -40,6 +43,19 @@ class _MovieCardState extends ConsumerState<MovieCard> {
   @override
   Widget build(BuildContext context) {
     final isFavorite = ref.watch(favoriteMovieCommandProvider(id: widget.id));
+
+    ref.listen(
+      saveFavoriteMovieCommandProvider(key: widget.key!, id: widget.id),
+      (_, next) {
+        next.whenOrNull(
+          error: (error, stackTrace) {
+            showErrorSnackbar(
+              'Desculpe, não foi possível adicionar seu filme aos favoritos.',
+            );
+          },
+        );
+      },
+    );
 
     return Stack(
       children: [
@@ -124,7 +140,24 @@ class _MovieCardState extends ConsumerState<MovieCard> {
                   color: isFavorite ? AppColors.redColor : AppColors.lightGrey,
                   size: 16,
                 ),
-                onPressed: widget.onFavoriteTap,
+                onPressed:
+                    widget.onFavoriteTap ??
+                    () {
+                      ref
+                          .read(
+                            movieCardViewModelProvider(
+                              key: widget.key!,
+                              id: widget.id,
+                            ).notifier,
+                          )
+                          .addOrRemoveFavorite(
+                            id: widget.id,
+                            title: widget.title,
+                            posterPath: widget.imageUrl,
+                            year: widget.year,
+                            isFavorite: !isFavorite,
+                          );
+                    },
               ),
             ),
           ),
