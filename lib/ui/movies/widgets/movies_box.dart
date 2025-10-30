@@ -3,6 +3,10 @@ import 'package:cinebox/ui/core/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 
 class MoviesBox extends StatelessWidget {
+  final String title;
+  final bool vertical;
+  final List<Movie> movies;
+
   const MoviesBox({
     required this.title,
     required this.movies,
@@ -10,27 +14,22 @@ class MoviesBox extends StatelessWidget {
     this.vertical = false,
   });
 
-  final String title;
-  final bool vertical;
-  final List<Movie> movies;
-
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            top: 32,
-            bottom: 24,
-          ),
+          padding: const EdgeInsets.only(left: 20, top: 32, bottom: 24),
           child: Text(
             title,
+            style:
+                Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
             textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
           ),
         ),
         Visibility(
@@ -40,26 +39,27 @@ class MoviesBox extends StatelessWidget {
               spacing: 20,
               runSpacing: 20,
               runAlignment: WrapAlignment.center,
-              children: movies
-                  .map(
-                    (movie) => MovieCard(
-                      id: movie.id,
-                      title: movie.title,
-                      year:
-                          movie.releaseDate != null &&
-                              movie.releaseDate!.isNotEmpty
-                          ? DateTime.parse(movie.releaseDate!).year
-                          : DateTime.now().year,
-                      imageUrl:
-                          'https://images.tmdb.org/t/p/w154${movie.posterPath}',
-                    ),
-                  )
-                  .toList(),
+              children: [
+                for (var movie in movies)
+                  MovieCard(
+                    key: UniqueKey(),
+                    id: movie.id,
+                    title: movie.title,
+                    year:
+                        movie.releaseDate != null &&
+                            movie.releaseDate!.isNotEmpty
+                        ? DateTime.parse(movie.releaseDate!).year
+                        : DateTime.now().year,
+                    imageUrl:
+                        'https://images.tmdb.org/t/p/w154/${movie.posterPath}',
+                    isFavorite: movie.isFavorite,
+                  ),
+              ],
             ),
           ),
           child: SizedBox(
             width: MediaQuery.sizeOf(context).width,
-            height: 252,
+            height: 253,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               physics: BouncingScrollPhysics(),
@@ -79,7 +79,7 @@ class MoviesBox extends StatelessWidget {
                         ? DateTime.parse(movie.releaseDate!).year
                         : DateTime.now().year,
                     imageUrl:
-                        'https://images.tmdb.org/t/p/w154${movie.posterPath}',
+                        'https://images.tmdb.org/t/p/w154/${movie.posterPath}',
                     isFavorite: movie.isFavorite,
                   ),
                 );

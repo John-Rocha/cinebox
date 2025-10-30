@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'save_favorite_movie_command.dart';
+part of 'remove_favorite_movie_command.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,35 +9,35 @@ part of 'save_favorite_movie_command.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(SaveFavoriteMovieCommand)
-const saveFavoriteMovieCommandProvider = SaveFavoriteMovieCommandFamily._();
+@ProviderFor(RemoveFavoriteMovieCommand)
+const removeFavoriteMovieCommandProvider = RemoveFavoriteMovieCommandFamily._();
 
-final class SaveFavoriteMovieCommandProvider
-    extends $NotifierProvider<SaveFavoriteMovieCommand, AsyncValue<int>> {
-  const SaveFavoriteMovieCommandProvider._({
-    required SaveFavoriteMovieCommandFamily super.from,
+final class RemoveFavoriteMovieCommandProvider
+    extends $NotifierProvider<RemoveFavoriteMovieCommand, AsyncValue<int>> {
+  const RemoveFavoriteMovieCommandProvider._({
+    required RemoveFavoriteMovieCommandFamily super.from,
     required (Key, int) super.argument,
   }) : super(
          retry: null,
-         name: r'saveFavoriteMovieCommandProvider',
+         name: r'removeFavoriteMovieCommandProvider',
          isAutoDispose: true,
          dependencies: null,
          $allTransitiveDependencies: null,
        );
 
   @override
-  String debugGetCreateSourceHash() => _$saveFavoriteMovieCommandHash();
+  String debugGetCreateSourceHash() => _$removeFavoriteMovieCommandHash();
 
   @override
   String toString() {
-    return r'saveFavoriteMovieCommandProvider'
+    return r'removeFavoriteMovieCommandProvider'
         ''
         '$argument';
   }
 
   @$internal
   @override
-  SaveFavoriteMovieCommand create() => SaveFavoriteMovieCommand();
+  RemoveFavoriteMovieCommand create() => RemoveFavoriteMovieCommand();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(AsyncValue<int> value) {
@@ -49,7 +49,7 @@ final class SaveFavoriteMovieCommandProvider
 
   @override
   bool operator ==(Object other) {
-    return other is SaveFavoriteMovieCommandProvider &&
+    return other is RemoveFavoriteMovieCommandProvider &&
         other.argument == argument;
   }
 
@@ -59,35 +59,38 @@ final class SaveFavoriteMovieCommandProvider
   }
 }
 
-String _$saveFavoriteMovieCommandHash() =>
-    r'81d9ae50b14465b74d0ce807597be796fd9fa4ab';
+String _$removeFavoriteMovieCommandHash() =>
+    r'0055b6656f844edd087972bbdf9a6eea77901ed8';
 
-final class SaveFavoriteMovieCommandFamily extends $Family
+final class RemoveFavoriteMovieCommandFamily extends $Family
     with
         $ClassFamilyOverride<
-          SaveFavoriteMovieCommand,
+          RemoveFavoriteMovieCommand,
           AsyncValue<int>,
           AsyncValue<int>,
           AsyncValue<int>,
           (Key, int)
         > {
-  const SaveFavoriteMovieCommandFamily._()
+  const RemoveFavoriteMovieCommandFamily._()
     : super(
         retry: null,
-        name: r'saveFavoriteMovieCommandProvider',
+        name: r'removeFavoriteMovieCommandProvider',
         dependencies: null,
         $allTransitiveDependencies: null,
         isAutoDispose: true,
       );
 
-  SaveFavoriteMovieCommandProvider call(Key key, int movieId) =>
-      SaveFavoriteMovieCommandProvider._(argument: (key, movieId), from: this);
+  RemoveFavoriteMovieCommandProvider call(Key key, int movieId) =>
+      RemoveFavoriteMovieCommandProvider._(
+        argument: (key, movieId),
+        from: this,
+      );
 
   @override
-  String toString() => r'saveFavoriteMovieCommandProvider';
+  String toString() => r'removeFavoriteMovieCommandProvider';
 }
 
-abstract class _$SaveFavoriteMovieCommand extends $Notifier<AsyncValue<int>> {
+abstract class _$RemoveFavoriteMovieCommand extends $Notifier<AsyncValue<int>> {
   late final _$args = ref.$arg as (Key, int);
   Key get key => _$args.$1;
   int get movieId => _$args.$2;

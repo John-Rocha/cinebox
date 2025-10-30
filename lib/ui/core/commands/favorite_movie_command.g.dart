@@ -59,7 +59,7 @@ final class FavoriteMovieCommandProvider
 }
 
 String _$favoriteMovieCommandHash() =>
-    r'659261a91970bc6e0f42a7d6b1d2975fc538e0f1';
+    r'ce86077995c86cdaf8475b5098ad99168690a10b';
 
 final class FavoriteMovieCommandFamily extends $Family
     with $ClassFamilyOverride<FavoriteMovieCommand, bool, bool, bool, int> {
@@ -72,8 +72,8 @@ final class FavoriteMovieCommandFamily extends $Family
         isAutoDispose: true,
       );
 
-  FavoriteMovieCommandProvider call({required int id}) =>
-      FavoriteMovieCommandProvider._(argument: id, from: this);
+  FavoriteMovieCommandProvider call(int movieId) =>
+      FavoriteMovieCommandProvider._(argument: movieId, from: this);
 
   @override
   String toString() => r'favoriteMovieCommandProvider';
@@ -81,13 +81,13 @@ final class FavoriteMovieCommandFamily extends $Family
 
 abstract class _$FavoriteMovieCommand extends $Notifier<bool> {
   late final _$args = ref.$arg as int;
-  int get id => _$args;
+  int get movieId => _$args;
 
-  bool build({required int id});
+  bool build(int movieId);
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(id: _$args);
+    final created = build(_$args);
     final ref = this.ref as $Ref<bool, bool>;
     final element =
         ref.element

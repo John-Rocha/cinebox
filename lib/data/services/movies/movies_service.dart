@@ -14,4 +14,7 @@ abstract class MoviesService {
 
   @POST('/favorite')
   Future<void> saveFavoriteMovie(@Body() SaveFavoriteMovie request);
+
+  @DELETE('/favorite/{id}')
+  Future<void> deleteFavoriteMovie({@Path('id') required int id});
 }

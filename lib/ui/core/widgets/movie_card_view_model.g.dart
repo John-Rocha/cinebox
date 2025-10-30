@@ -16,7 +16,7 @@ final class MovieCardViewModelProvider
     extends $NotifierProvider<MovieCardViewModel, void> {
   const MovieCardViewModelProvider._({
     required MovieCardViewModelFamily super.from,
-    required ({Key key, int id}) super.argument,
+    required (Key, int) super.argument,
   }) : super(
          retry: null,
          name: r'movieCardViewModelProvider',
@@ -59,17 +59,11 @@ final class MovieCardViewModelProvider
 }
 
 String _$movieCardViewModelHash() =>
-    r'5c798e6e4391418fbc1869c9bd461093bc4e63c9';
+    r'1c79ec229f56c3948baff09c406af9b56f127dde';
 
 final class MovieCardViewModelFamily extends $Family
     with
-        $ClassFamilyOverride<
-          MovieCardViewModel,
-          void,
-          void,
-          void,
-          ({Key key, int id})
-        > {
+        $ClassFamilyOverride<MovieCardViewModel, void, void, void, (Key, int)> {
   const MovieCardViewModelFamily._()
     : super(
         retry: null,
@@ -79,23 +73,23 @@ final class MovieCardViewModelFamily extends $Family
         isAutoDispose: true,
       );
 
-  MovieCardViewModelProvider call({required Key key, required int id}) =>
-      MovieCardViewModelProvider._(argument: (key: key, id: id), from: this);
+  MovieCardViewModelProvider call(Key key, int movieId) =>
+      MovieCardViewModelProvider._(argument: (key, movieId), from: this);
 
   @override
   String toString() => r'movieCardViewModelProvider';
 }
 
 abstract class _$MovieCardViewModel extends $Notifier<void> {
-  late final _$args = ref.$arg as ({Key key, int id});
-  Key get key => _$args.key;
-  int get id => _$args.id;
+  late final _$args = ref.$arg as (Key, int);
+  Key get key => _$args.$1;
+  int get movieId => _$args.$2;
 
-  void build({required Key key, required int id});
+  void build(Key key, int movieId);
   @$mustCallSuper
   @override
   void runBuild() {
-    build(key: _$args.key, id: _$args.id);
+    build(_$args.$1, _$args.$2);
     final ref = this.ref as $Ref<void, void>;
     final element =
         ref.element

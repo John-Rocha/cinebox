@@ -5,9 +5,9 @@ part 'favorite_movie_command.g.dart';
 @riverpod
 class FavoriteMovieCommand extends _$FavoriteMovieCommand {
   @override
-  bool build({required int id}) => false;
+  bool build(int movieId) => false;
 
-  void toggleFavorite() {
+  void toogleFavorite() {
     state = !state;
   }
 

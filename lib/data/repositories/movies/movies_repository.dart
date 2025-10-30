@@ -9,6 +9,7 @@ import 'package:dio/dio.dart';
 
 abstract interface class MoviesRepository {
   Future<Result<List<FavoriteMovie>>> getMyFavoritesMovies();
+  Future<Result<Unit>> deleteFavoriteMovie({required int id});
   Future<Result<Unit>> saveFavoriteMovie(FavoriteMovie favoriteMovie);
 }
 
@@ -57,6 +58,19 @@ class MoviesRepositoryImpl implements MoviesRepository {
       log('Erro ao salvar o filme no favorito', error: e, stackTrace: s);
       return Failure(
         error: DataExceptions(message: 'Erro ao salvar o filme no favorito'),
+      );
+    }
+  }
+
+  @override
+  Future<Result<Unit>> deleteFavoriteMovie({required int id}) async {
+    try {
+      await _moviesService.deleteFavoriteMovie(id: id);
+      return successOfUnit();
+    } on DioException catch (e, s) {
+      log('Erro ao remover o filme do favorito', error: e, stackTrace: s);
+      return Failure(
+        error: DataExceptions(message: 'Erro ao remover o filme do favorito'),
       );
     }
   }
