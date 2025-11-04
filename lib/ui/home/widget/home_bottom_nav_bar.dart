@@ -4,7 +4,14 @@ import 'package:cinebox/ui/home/widget/home_bottom_nav_bar_item.dart';
 import 'package:flutter/material.dart';
 
 class HomeBottomNavBar extends StatefulWidget {
-  const HomeBottomNavBar({super.key});
+  final int currentIndex;
+  final ValueChanged<int> onTap;
+
+  const HomeBottomNavBar({
+    required this.currentIndex,
+    required this.onTap,
+    super.key,
+  });
 
   @override
   State<HomeBottomNavBar> createState() => _HomeBottomNavBarState();
@@ -33,7 +40,8 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
           enableFeedback: false,
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
-          currentIndex: 0,
+          currentIndex: widget.currentIndex,
+          onTap: widget.onTap,
           selectedItemColor: AppColors.redColor,
           unselectedItemColor: AppColors.lightGrey,
           selectedLabelStyle: TextStyle(
