@@ -37,7 +37,7 @@ abstract interface class TmdbRepository {
 
   Future<Result<List<Movie>>> searchMovies({required String query});
 
-  Future<Result<MovieDetail>> getMovieDetail(int movieId);
+  Future<Result<MovieDetail>> getMovieDetail({required int movieId});
 }
 
 class TmdbRepositoryImpl implements TmdbRepository {
@@ -165,7 +165,7 @@ class TmdbRepositoryImpl implements TmdbRepository {
   }
 
   @override
-  Future<Result<MovieDetail>> getMovieDetail(int movieId) async {
+  Future<Result<MovieDetail>> getMovieDetail({required int movieId}) async {
     final response = await _tmdbService.getMovieDetails(
       movieId,
       appendToResponse: 'credits,videos,recommendations,release_dates,images',
