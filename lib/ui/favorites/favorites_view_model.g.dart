@@ -55,4 +55,4 @@ final class FavoritesViewModelProvider
 }
 
 String _$favoritesViewModelHash() =>
-    r'07ca9b617804a1ead44373f7e4f8c40d216f4b6d';
+    r'd37f04f015645e32cf51edd56b1bf579ffe0a996';
