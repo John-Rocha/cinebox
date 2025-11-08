@@ -18,6 +18,7 @@ Um aplicativo Flutter moderno para descobrir, explorar e gerenciar seus filmes f
 ## 📱 Sobre o Projeto
 
 Cinebox é um aplicativo de catálogo de filmes que permite aos usuários:
+
 - Explorar filmes populares, mais bem avaliados e em cartaz
 - Buscar filmes por nome ou gênero
 - Ver detalhes completos dos filmes incluindo elenco
@@ -27,17 +28,20 @@ Cinebox é um aplicativo de catálogo de filmes que permite aos usuários:
 ## ✨ Funcionalidades
 
 ### 🔐 Autenticação
+
 - Login com Google
 - Armazenamento seguro de tokens
 - Verificação automática de sessão
 
 ### 🎥 Exploração de Filmes
+
 - **Categorias**: Populares, Mais Votados, Em Cartaz, Em Breve
 - **Gêneros**: Navegação por gênero cinematográfico
 - **Busca**: Pesquisa de filmes por nome
 - **Detalhes**: Informações completas incluindo sinopse, elenco e avaliação
 
 ### ⭐ Gerenciamento de Favoritos
+
 - Adicionar filmes aos favoritos
 - Remover filmes dos favoritos
 - Visualizar lista de favoritos
@@ -46,6 +50,7 @@ Cinebox é um aplicativo de catálogo de filmes que permite aos usuários:
 ## 🏗️ Arquitetura
 
 O projeto segue os princípios da **Clean Architecture** combinada com **MVVM**, garantindo:
+
 - Separação clara de responsabilidades
 - Alta testabilidade
 - Fácil manutenção e escalabilidade
@@ -80,33 +85,40 @@ O projeto segue os princípios da **Clean Architecture** combinada com **MVVM**,
 ## 🛠️ Tecnologias Utilizadas
 
 ### Core
+
 - **Flutter SDK**: ^3.9.2
 - **Dart**: ^3.9.2
 
 ### Gerenciamento de Estado
+
 - **flutter_riverpod**: ^3.0.0 - Gerenciamento de estado reativo
 - **riverpod_annotation**: ^3.0.0 - Code generation
 - **riverpod_generator**: ^3.0.0 - Geração automática de providers
 
 ### Rede e APIs
+
 - **dio**: ^5.9.0 - Cliente HTTP
 - **retrofit**: ^4.7.1 - Type-safe REST client
 - **json_annotation**: ^4.9.0 - Serialização JSON
 
 ### Autenticação e Segurança
+
 - **google_sign_in**: ^7.2.0 - Login com Google
 - **flutter_secure_storage**: ^9.2.4 - Armazenamento seguro
 
 ### UI/UX
+
 - **cached_network_image**: ^3.4.1 - Cache de imagens
 - **loading_animation_widget**: ^1.3.0 - Animações de carregamento
 - **cupertino_icons**: ^1.0.8 - Ícones iOS
 
 ### Configuração
+
 - **envied**: ^1.2.0 - Gerenciamento de variáveis de ambiente
 - **logger**: ^2.6.0 - Logging
 
 ### Desenvolvimento
+
 - **build_runner**: ^2.5.4 - Geração de código
 - **flutter_lints**: ^6.0.0 - Análise de código
 - **custom_lint**: ^0.8.0 - Linting customizado
@@ -124,17 +136,20 @@ O projeto segue os princípios da **Clean Architecture** combinada com **MVVM**,
 ## 🚀 Instalação
 
 1. **Clone o repositório**
+
 ```bash
 git clone https://github.com/John-Rocha/cinebox.git
 cd cinebox
 ```
 
 2. **Instale as dependências**
+
 ```bash
 flutter pub get
 ```
 
 3. **Execute os geradores de código**
+
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```
@@ -169,6 +184,7 @@ THE_MOVIE_DB_API_KEY=sua_tmdb_api_key_aqui
 ### 4. Backend
 
 Configure a URL do seu backend no arquivo `.env`. O backend deve implementar endpoints para:
+
 - `GET /favorites` - Listar filmes favoritos
 - `POST /favorites` - Adicionar favorito
 - `DELETE /favorites/{id}` - Remover favorito
