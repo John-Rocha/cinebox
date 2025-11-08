@@ -43,7 +43,7 @@ final class GetMovieDetailsCommandProvider
 }
 
 String _$getMovieDetailsCommandHash() =>
-    r'4649d83ecda0f7869130e2c3573422ea0af3e506';
+    r'4d037e5008f6851dc94ec058880d7588cc2d9d37';
 
 abstract class _$GetMovieDetailsCommand
     extends $Notifier<AsyncValue<MovieDetail?>> {

@@ -11,14 +11,14 @@ class GetMovieDetailsCommand extends _$GetMovieDetailsCommand {
   AsyncValue<MovieDetail?> build() => AsyncLoading();
 
   Future<void> execute({required int movieId}) async {
-    final result = ref
+    final result = await ref
         .read(tmdbRepositoryProvider)
         .getMovieDetail(movieId: movieId);
+
     state = switch (result) {
       Success(:final value) => AsyncData(value),
-
-      Future() => AsyncError(
-        'Erro ao buscar os detalhes desse filme.',
+      Failure() => AsyncError(
+        'Erro ao buscar detalhes de filme',
         StackTrace.current,
       ),
     };
