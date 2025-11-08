@@ -94,6 +94,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                       height: 10,
                     ),
                     Text(
+                      data.name,
+                      style: AppTextStyles.boldMedium,
+                    ),
+                    Text(
                       data.email,
                       style: AppTextStyles.subtitleSmall,
                     ),
